@@ -13,6 +13,6 @@ Running this Example
 
 [OPTIONAL] build docker image
 
-.. code-block:: bash
+code-block:: bash
   docker-compose up -f docker-compose-local.yml -d --build 
 
