@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/emiliotylson/Documents/workspace/ml_flow/mlflow/examples/my_hyperparam/mlruns/0/aa8fb9577453472ebd760472898b46e0/artifacts
+end_time: 1595582508339
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: aa8fb9577453472ebd760472898b46e0
+run_uuid: aa8fb9577453472ebd760472898b46e0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1595582492828
+status: 3
+tags: []
+user_id: root

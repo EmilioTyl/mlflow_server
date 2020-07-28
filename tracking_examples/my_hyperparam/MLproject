@@ -1,0 +1,41 @@
+name: wine-docker-example
+docker_env:
+  image: mlflow-wine-env
+  environment: [MLFLOW_TRACKING_URI]
+entry_points:
+  train:
+    parameters:
+      training_data: {type: string, default: "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"}
+      epochs: {type: int, default: 32}
+      batch_size: {type: int, default: 16}
+      learning_rate: {type: float, default: 1e-1}
+      momentum: {type: float, default: 0.1}
+      seed: {type: int, default: 97531}
+    command: "python train.py {training_data}
+                                    --batch-size {batch_size}
+                                    --epochs {epochs}
+                                    --learning-rate {learning_rate}
+                                    --momentum {momentum}"
+  gpyopt:
+    parameters:
+      training_data: {type: string, default: "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"}
+      max_runs: {type: int, default: 8}
+      batch_size: {type: int, default: 2}
+      max_p: {type: int, default: 2}
+      epochs: {type: int, default: 20}
+      metric: {type: string, default: "rmse"}
+      gpy_model: {type: string, default: "GP"}
+      gpy_acquisition: {type: string, default: "EI"}
+      initial_design: {type: string, default: "random"}
+      seed: {type: int, default: 97531}
+
+    command: "python gpyopt_hyperparam.py  {training_data}
+                                             --max-runs {max_runs}
+                                             --batch-size {batch_size}
+                                             --max-p {max_p}
+                                             --epochs {epochs}
+                                             --metric {metric}
+                                             --gpy-model {gpy_model}
+                                             --gpy-acquisition {gpy_acquisition}
+                                             --initial-design {initial_design}
+                                             --seed {seed}"

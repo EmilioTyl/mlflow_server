@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/emiliotylson/Documents/workspace/ml_flow/mlflow/examples/my_docker/mlruns/0/d7838838669c42a89acbd5b189f3575f/artifacts
+end_time: 1595503312931
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: d7838838669c42a89acbd5b189f3575f
+run_uuid: d7838838669c42a89acbd5b189f3575f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1595503307549
+status: 3
+tags: []
+user_id: emiliotylson

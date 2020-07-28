@@ -1,0 +1,11 @@
+name: wine-docker-example
+docker_env:
+  image: mlflow-wine-env
+  environment: [["MLFLOW_RUN_ID", ""]]
+
+entry_points:
+  main:
+    parameters:
+      alpha: float
+      l1: {type: float, default: 0.1}
+    command: "python train.py --alpha {alpha} --l1 {l1}"

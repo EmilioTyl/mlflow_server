@@ -1,0 +1,4 @@
+artifact_location: file:///Users/emiliotylson/Documents/workspace/ml_flow/mlflow/examples/my_docker/mlruns/0
+experiment_id: '0'
+lifecycle_stage: active
+name: Default

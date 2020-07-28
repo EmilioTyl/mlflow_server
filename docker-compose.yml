@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+    artifact:   
+        image: stilliard/pure-ftpd
+        restart: always  
+        ports:
+            - "20:20"
+            - "21:21"
+            - "30000-30009:30000-30009"
+        environment:
+            - PUBLICHOST=0.0.0.0
+            - FTP_USER_NAME=user
+            - FTP_USER_PASS=pass
+            - FTP_USER_HOME=/home/user
+        volumes:
+            - ./artifacts/ftp:/home/user
+            - ./artifact/ftp/passwd:/etc/pure-ftpd/passwd  
+    db:
+        restart: always
+        image: mysql/mysql-server:5.7.28
+        container_name: mlflow_db
+        expose:
+            - "3306"
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        volumes:
+            - ./mysql/dbdata:/var/lib/mysql
+
+    web:
+        restart: always
+        build: ./ml_flow
+        image: mlflow_server
+        container_name: mlflow_server
+        expose: 
+            - "5000"
+        ports: 
+            - "5000:5000"
+        command: mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE} --default-artifact-root ftp://test:test@artifact --host 0.0.0.0
+    filezila:
+        image: jlesage/filezilla
+        ports: 
+            - "5800:5800"
